@@ -8,12 +8,12 @@
     </div>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="data" class="example-table"
-             matSort matSortActive="prod_name" matSortDisableClear matSortDirection="asc">
+             matSort matSortActive="libel" matSortDisableClear matSortDirection="asc">
   
         <!-- Product Name Column -->
-        <ng-container matColumnDef="prod_name">
+        <ng-container matColumnDef="libel">
           <th mat-header-cell *matHeaderCellDef>Waste Name</th>
-          <td mat-cell *matCellDef="let row">{{row.libelle}}</td>
+          <td mat-cell *matCellDef="let row">{{row.libel}}</td>
         </ng-container>
   
         <!-- Product Price Column -->

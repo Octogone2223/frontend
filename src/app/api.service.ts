@@ -7,7 +7,7 @@ import { Waste } from './waste';
 const httpOptions = {
   headers: new HttpHeaders({'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'})
 };
-const apiUrl = "https://octogone-waste.herokuapp.com/";
+const apiUrl = "http://octogone-waste.herokuapp.com/wastes";
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +28,10 @@ export class ApiService {
     };
   }
 
-  getWastes (): Observable<Waste[]> {
-    return this.http.get<Waste[]>(apiUrl)
+  getWastes (): Observable<any[]> {
+    return this.http.get<any[]>(apiUrl, { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}} )
       .pipe(
-        tap(heroes => console.log('fetched wastes')),
+        tap(res => console.log('fetched wastes')),
         catchError(this.handleError('getWastes', []))
       );
   }
