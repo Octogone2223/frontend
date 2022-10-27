@@ -13,9 +13,7 @@ export class WasteDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
 
   waste: Waste = {
-    _id: '', label: '', issuing_company: '', quantity: 0, expiration_date: '', is_collected: false,
-    createdAt: undefined,
-    updatedAt: undefined
+    _id: '', label: '', issuing_company: '', quantity: 0, expiration_date: '', is_collected: false
   };
   isLoadingResults = true;
 

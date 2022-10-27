@@ -5,9 +5,9 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Waste } from './waste';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'})
 };
-const apiUrl = "https://octogone-waste.herokuapp.com/wastes";
+const apiUrl = "https://octogone-waste.herokuapp.com/";
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +46,7 @@ export class ApiService {
   
   addWaste (waste:any): Observable<Waste> {
     return this.http.post<Waste>(apiUrl, waste, httpOptions).pipe(
-      tap((waste: Waste) => console.log(`added waste w/ id=${waste._id}`)),
+      tap((waste: any) => console.log(`added waste w/ id=${waste._id}`)),
       catchError(this.handleError<Waste>('addWaste'))
     );
   }

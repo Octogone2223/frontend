@@ -22,7 +22,7 @@ export class WasteAddComponent implements OnInit {
 
   ngOnInit() {
     this.wasteForm = this.formBuilder.group({
-      'labelle' : [null, Validators.required],
+      'label' : [null, Validators.required],
       'issuing_company' : [null, Validators.required],
       'quantity' : [null, Validators.required],
       'expiration_date' : [null, Validators.required],
@@ -34,9 +34,9 @@ export class WasteAddComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.addWaste(form)
       .subscribe(res => {
-          let id = res['_id'];
+          //let id = res['_id'];
           this.isLoadingResults = false;
-          this.router.navigate(['/waste-details', id]);
+         // this.router.navigate(['/waste-details', id]);
         }, (err) => {
           console.log(err);
           this.isLoadingResults = false;

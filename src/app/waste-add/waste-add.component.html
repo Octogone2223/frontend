@@ -9,36 +9,36 @@
     <mat-card class="example-card">x
       <form [formGroup]="wasteForm" (ngSubmit)="onFormSubmit(wasteForm.value)">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Waste Name" formControlName="labelle"
-                 [errorStateMatcher]="matcher">
+          <input matInput placeholder="Waste Name" formControlName="label"
+                 >
           <mat-error>
-            <span *ngIf="!wasteForm.get('labelle').valid && wasteForm.get('labelle').touched">Please enter Waste Name</span>
+            <span *ngIf="!wasteForm.get('label').valid && wasteForm.get('label').touched">Please enter Waste Name</span>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Waste Desc" formControlName="issuing_company"
-                 [errorStateMatcher]="matcher">
+                 >
           <mat-error>
             <span *ngIf="!wasteForm.get('issuing_company').valid && wasteForm.get('issuing_company').touched">Please enter Waste Description</span>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Waste Price" formControlName="quantity"
-                 [errorStateMatcher]="matcher">
+                 >
           <mat-error>
             <span *ngIf="!wasteForm.get('quantity').valid && wasteForm.get('quantity').touched">Please enter Waste Price</span>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Waste Price" formControlName="expiration_date"
-                   [errorStateMatcher]="matcher">
+                   >
             <mat-error>
               <span *ngIf="!wasteForm.get('expiration_date').valid && wasteForm.get('expiration_date').touched">Please enter Waste Price</span>
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Waste Price" formControlName="is_collected"
-                   [errorStateMatcher]="matcher">
+                   >
             <mat-error>
               <span *ngIf="!wasteForm.get('is_collected').valid && wasteForm.get('is_collected').touched">Please enter Waste Price</span>
             </mat-error>

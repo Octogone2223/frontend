@@ -5,6 +5,5 @@ export class Waste {
     quantity: number = 0;
     expiration_date: string = '';
     is_collected: boolean = false;
-    createdAt: string | undefined ;
-    updatedAt: string | undefined ;
+   
   }
