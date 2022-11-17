@@ -3,8 +3,9 @@
          *ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     </div>
-    <mat-card class="example-card">
+    <mat-card class="example-card" *ngIf="registered">
       <form [formGroup]="register" (ngSubmit)="onFormSubmit(register)">
+        <h1>Inscription</h1>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Username" formControlName="username">
           <mat-error>
@@ -22,6 +23,30 @@
         <div class="button-row">
           <button type="submit" [disabled]="!register.valid" mat-flat-button color="primary">Inscription</button>
         </div>
+        <p>Vous avez déjà un compte? Par <span (click)="registered = !registered" >ici</span> </p>
       </form>
     </mat-card>
+    <mat-card class="example-card" *ngIf="!registered">
+        <h1>Connexion</h1>
+        <form [formGroup]="login" (ngSubmit)="onFormSubmitLogin(login)">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username" formControlName="usernamelogin">
+            <mat-error>
+              <span *ngIf="!login.get('username').valid && login.get('usernamelogin').touched">Enter a Username</span>
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" formControlName="passwordlogin">
+            <mat-error>
+              <span *ngIf="!login.get('password').valid && login.get('passwordlogin').touched">Enter Waste Password</span>
+            </mat-error>
+          </mat-form-field>
+  
+          <div class="button-row">
+            <button type="submit" [disabled]="!login.valid" mat-flat-button color="primary">Connexion</button>
+          </div>
+        <p>Pas de compte, créer le <span (click)="registered = !registered" >ici</span> </p>
+        </form>
+      </mat-card>
   </div>
