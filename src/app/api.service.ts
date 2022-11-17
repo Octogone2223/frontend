@@ -7,7 +7,7 @@ import { Waste } from './waste';
 const httpOptions = {
   headers: new HttpHeaders({'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'})
 };
-const apiUrl = "http://octogone-waste.herokuapp.com/wastes";
+const apiUrl = "https://octogone-waste.herokuapp.com/wastes";
 
 @Injectable({
   providedIn: 'root'
