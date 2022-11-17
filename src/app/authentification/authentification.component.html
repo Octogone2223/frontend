@@ -16,7 +16,7 @@
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Password" formControlName="password">
           <mat-error>
-            <span *ngIf="!register.get('password').valid && register.get('password').touched">Please enter Waste Password</span>
+            <span *ngIf="!register.get('password').valid && register.get('password').touched">Please enter a Password</span>
           </mat-error>
         </mat-form-field>
 
@@ -32,14 +32,14 @@
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Username" formControlName="usernamelogin">
             <mat-error>
-              <span *ngIf="!login.get('username').valid && login.get('usernamelogin').touched">Enter a Username</span>
+              <span *ngIf="!login.get('usernamelogin').valid && login.get('usernamelogin').touched">Enter a Username</span>
             </mat-error>
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Password" formControlName="passwordlogin">
             <mat-error>
-              <span *ngIf="!login.get('password').valid && login.get('passwordlogin').touched">Enter Waste Password</span>
+              <span *ngIf="!login.get('passwordlogin').valid && login.get('passwordlogin').touched">Enter a Password</span>
             </mat-error>
           </mat-form-field>
   

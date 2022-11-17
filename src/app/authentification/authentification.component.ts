@@ -14,6 +14,8 @@ export class AuthentificationComponent implements OnInit {
   login: FormGroup | any;
   username: string = '';
   password: string = '';
+  usernamelogin: string = '';
+  passwordlogin: string = '';
   isLoadingResults = false;
   registered = false;
 
@@ -23,9 +25,13 @@ export class AuthentificationComponent implements OnInit {
     this.register = this.formBuilder.group({
       'username' : [null, Validators.required],
       'password' : [null, Validators.required],
+    });
+    
+    this.login = this.formBuilder.group({
       'usernamelogin' : [null, Validators.required],
       'passwordlogin' : [null, Validators.required]
     });
+
   }
 
   onFormSubmit(form:NgForm) {
@@ -49,18 +55,20 @@ export class AuthentificationComponent implements OnInit {
   onFormSubmitLogin(form:NgForm){
     this.isLoadingResults = true;
     let user = {"username" : form.value['usernamelogin'], "password" : form.value['passwordlogin'] };
-    try{
-      this.api.logAccount(user)
-      .subscribe(res => {
-        console.log(res)
-        this.isLoadingResults = false;
-      }, err => {
-        console.log(err);
-        this.isLoadingResults = false;
-      });
-      }catch{
-        this.isLoadingResults = false;
-      }
+    console.log(form.value);
+    
+    // try{
+    //   this.api.logAccount(user)
+    //   .subscribe(res => {
+    //     console.log(res)
+    //     this.isLoadingResults = false;
+    //   }, err => {
+    //     console.log(err);
+    //     this.isLoadingResults = false;
+    //   });
+    //   }catch{
+    //     this.isLoadingResults = false;
+    //   }
   }
 
 }
