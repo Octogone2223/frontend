@@ -7,10 +7,10 @@ import { Waste } from './waste';
 const httpOptions = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin':'*','Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzYzYzEzOTEwNmYyMDFlZDdmNGZkNyIsImlhdCI6MTY2ODY5MzAzMiwiZXhwIjoxNjY4Njk2NjMyfQ.f-L_okt-72NONsQwfvTbGvIhKVkqMBr9PxMgeNn5eZg',
+    'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzY0NGVjZDEzZDY2NjM4ZDc2MGE4ZCIsImlhdCI6MTY2ODY5NzQ2NSwiZXhwIjoxNjY4NzAxMDY1fQ.W6Hfxp-lursEMQ_0owWtsEgjvw6_EiVtkTNoV_cImn4',
   })
 };
-const apiUrl = "https://octogone-waste.herokuapp.com/wastes";
+const apiUrl = "https://octogone-waste.herokuapp.com/";
 
 @Injectable({
   providedIn: 'root'
@@ -31,31 +31,37 @@ export class ApiService {
     };
   }
 
-  createAccount (): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl, httpOptions )
+  logAccount (user:any): Observable<any[]> {
+    console.log('createAccountFunction');
+    console.log(user)
+    const headers = { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}}
+    return this.http.post<any[]>(apiUrl + 'auth/login',user, headers)
       .pipe(
         tap(res => console.log('fetched wastes')),
         catchError(this.handleError('getWastes', []))
       );
   }
 
-  logAccount (): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl, httpOptions )
+  createAccount (user:any): Observable<any[]> {
+    console.log('createAccountFunction');
+    console.log(user)
+    const headers = { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}}
+    return this.http.post<any[]>(apiUrl + 'auth/register', user, headers)
       .pipe(
-        tap(res => console.log('fetched wastes')),
+        tap(res => console.log(res)),
         catchError(this.handleError('getWastes', []))
       );
   }
 
-  getWastes (): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl, httpOptions )
+  getWastes (token:string): Observable<any[]> {
+    return this.http.get<any[]>(apiUrl + 'wastes', httpOptions )
       .pipe(
         tap(res => console.log('fetched wastes')),
         catchError(this.handleError('getWastes', []))
       );
   }
   
-  getWaste(id: number): Observable<Waste> {
+  getWaste(id: number,token:string): Observable<Waste> {
     const url = `${apiUrl}/${id}`;
     return this.http.get<Waste>(url).pipe(
       tap(_ => console.log(`fetched waste id=${id}`)),
@@ -63,14 +69,14 @@ export class ApiService {
     );
   }
   
-  addWaste (waste:any): Observable<Waste> {
+  addWaste (waste:any,token:string): Observable<Waste> {
     return this.http.post<Waste>(apiUrl, waste, httpOptions).pipe(
       tap((waste: any) => console.log(`added waste w/ id=${waste._id}`)),
       catchError(this.handleError<Waste>('addWaste'))
     );
   }
   
-  updateWaste (id:string, waste:any): Observable<any> {
+  updateWaste (id:string,token:string, waste:any): Observable<any> {
     const url = `${apiUrl}/${id}`;
     return this.http.put(url, waste, httpOptions).pipe(
       tap(_ => console.log(`updated waste id=${id}`)),
@@ -78,7 +84,7 @@ export class ApiService {
     );
   }
   
-  deleteWaste (id:string): Observable<Waste> {
+  deleteWaste (id:string,token:string): Observable<Waste> {
     const url = `${apiUrl}/${id}`;
   
     return this.http.delete<Waste>(url, httpOptions).pipe(
