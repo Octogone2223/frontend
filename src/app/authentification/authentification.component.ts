@@ -57,18 +57,18 @@ export class AuthentificationComponent implements OnInit {
     let user = {"username" : form.value['usernamelogin'], "password" : form.value['passwordlogin'] };
     console.log(form.value);
     
-    // try{
-    //   this.api.logAccount(user)
-    //   .subscribe(res => {
-    //     console.log(res)
-    //     this.isLoadingResults = false;
-    //   }, err => {
-    //     console.log(err);
-    //     this.isLoadingResults = false;
-    //   });
-    //   }catch{
-    //     this.isLoadingResults = false;
-    //   }
+    try{
+      this.api.logAccount(user)
+      .subscribe(res => {
+        console.log(res)
+        this.isLoadingResults = false;
+      }, err => {
+        console.log(err);
+        this.isLoadingResults = false;
+      });
+      }catch{
+        this.isLoadingResults = false;
+      }
   }
 
 }
