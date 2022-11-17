@@ -22,7 +22,7 @@ export class WasteDetailComponent implements OnInit {
   }
 
   getWasteDetails(id:any) {
-    this.api.getWaste(id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN…zcyfQ._u3DjsICv5h81A8BaNC1ivJPWjn9RNU0RrE4DoR7Fsw")
+    this.api.getWaste(id)
       .subscribe(data => {
         this.waste = data;
         console.log(this.waste);
@@ -32,7 +32,7 @@ export class WasteDetailComponent implements OnInit {
 
   deleteWaste(id:string) {
     this.isLoadingResults = true;
-    this.api.deleteWaste(id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN…zcyfQ._u3DjsICv5h81A8BaNC1ivJPWjn9RNU0RrE4DoR7Fsw")
+    this.api.deleteWaste(id)
       .subscribe(res => {
           this.isLoadingResults = false;
           this.router.navigate(['/wastes']);

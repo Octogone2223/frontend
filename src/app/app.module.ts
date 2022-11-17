@@ -11,8 +11,11 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from "ngx-cookie-service";
 
 import {MaterialModule} from './material.module';
+
+
 
  
 @NgModule({
@@ -35,7 +38,7 @@ import {MaterialModule} from './material.module';
     MaterialModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

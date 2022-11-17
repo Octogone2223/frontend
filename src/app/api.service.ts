@@ -3,13 +3,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Waste } from './waste';
+import { CookieService } from 'ngx-cookie-service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Access-Control-Allow-Origin':'*','Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzY0NGVjZDEzZDY2NjM4ZDc2MGE4ZCIsImlhdCI6MTY2ODY5NzQ2NSwiZXhwIjoxNjY4NzAxMDY1fQ.W6Hfxp-lursEMQ_0owWtsEgjvw6_EiVtkTNoV_cImn4',
-  })
-};
+
 const apiUrl = "https://octogone-waste.herokuapp.com/";
 
 @Injectable({
@@ -17,8 +13,19 @@ const apiUrl = "https://octogone-waste.herokuapp.com/";
 })
 
 export class ApiService {
+  token = '';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin':'*','Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token,
+    })
+  };
 
-  constructor(private http: HttpClient) { }
+
+
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService) { }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -53,15 +60,18 @@ export class ApiService {
       );
   }
 
-  getWastes (token:string): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl + 'wastes', httpOptions )
+  getWastes (): Observable<any[]> {
+    this.token = this.cookieService.get('token');
+    console.log('testttt:' + this.token)
+    return this.http.get<any[]>(apiUrl + 'wastes', this.httpOptions )
       .pipe(
         tap(res => console.log('fetched wastes')),
         catchError(this.handleError('getWastes', []))
       );
   }
   
-  getWaste(id: number,token:string): Observable<Waste> {
+  getWaste(id: number): Observable<Waste> {
+    this.token = this.cookieService.get('token');
     const url = `${apiUrl}/${id}`;
     return this.http.get<Waste>(url).pipe(
       tap(_ => console.log(`fetched waste id=${id}`)),
@@ -69,25 +79,28 @@ export class ApiService {
     );
   }
   
-  addWaste (waste:any,token:string): Observable<Waste> {
-    return this.http.post<Waste>(apiUrl, waste, httpOptions).pipe(
+  addWaste (waste:any): Observable<Waste> {
+    this.token = this.cookieService.get('token');
+    return this.http.post<Waste>(apiUrl, waste, this.httpOptions).pipe(
       tap((waste: any) => console.log(`added waste w/ id=${waste._id}`)),
       catchError(this.handleError<Waste>('addWaste'))
     );
   }
   
-  updateWaste (id:string,token:string, waste:any): Observable<any> {
+  updateWaste (id:string, waste:any): Observable<any> {
+    this.token = this.cookieService.get('token');
     const url = `${apiUrl}/${id}`;
-    return this.http.put(url, waste, httpOptions).pipe(
+    return this.http.put(url, waste, this.httpOptions).pipe(
       tap(_ => console.log(`updated waste id=${id}`)),
       catchError(this.handleError<any>('updateWaste'))
     );
   }
   
-  deleteWaste (id:string,token:string): Observable<Waste> {
+  deleteWaste (id:string): Observable<Waste> {
+    this.token = this.cookieService.get('token');
     const url = `${apiUrl}/${id}`;
   
-    return this.http.delete<Waste>(url, httpOptions).pipe(
+    return this.http.delete<Waste>(url, this.httpOptions).pipe(
       tap(_ => console.log(`deleted waste id=${id}`)),
       catchError(this.handleError<Waste>('deleteWaste'))
     );

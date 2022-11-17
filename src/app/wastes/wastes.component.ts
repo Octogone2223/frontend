@@ -20,39 +20,7 @@ export class WastesComponent implements OnInit {
 
   ngOnInit() {
 
-
-    const user = {  "username" : "AZERT", "password": "setsetestsetsetset" };
-  // try{
-  //   this.api.createAccount(user)
-  //   .subscribe(res => {
-  //     this.data = res;
-  //     console.log(this.data);
-  //     this.isLoadingResults = false;
-  //   }, err => {
-  //     console.log(err);
-  //     this.isLoadingResults = false;
-  //   });
-  // }catch{
-  //   console.log('user deja cree');
-  // }
-
-  try{
-    this.api.logAccount(user)
-    .subscribe(res => {
-      this.data = res;
-      console.log(this.data)
-      this.token = JSON.stringify(this.data)
-      console.log(this.token);
-      this.isLoadingResults = false;
-    }, err => {
-      console.log(err);
-      this.isLoadingResults = false;
-    });
-    }catch{
-      console.log('user deja cree');
-    }
-
-    this.api.getWastes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN…zcyfQ._u3DjsICv5h81A8BaNC1ivJPWjn9RNU0RrE4DoR7Fsw")
+    this.api.getWastes()
       .subscribe(res => {
         this.data = res;
         console.log(this.data);

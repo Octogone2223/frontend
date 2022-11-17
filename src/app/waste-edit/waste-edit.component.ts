@@ -34,7 +34,7 @@ export class WasteEditComponent implements OnInit {
   }
 
   getWaste(id:any) {
-    this.api.getWaste(id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN…zcyfQ._u3DjsICv5h81A8BaNC1ivJPWjn9RNU0RrE4DoR7Fsw").subscribe(data => {
+    this.api.getWaste(id).subscribe(data => {
       this._id = data._id;
       this.wasteForm.setValue({
         label: data.label,
@@ -48,7 +48,7 @@ export class WasteEditComponent implements OnInit {
 
   onFormSubmit(form:NgForm) {
     this.isLoadingResults = true;
-    this.api.updateWaste(this._id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN…zcyfQ._u3DjsICv5h81A8BaNC1ivJPWjn9RNU0RrE4DoR7Fsw" , form)
+    this.api.updateWaste(this._id, form)
       .subscribe(res => {
           let id = res['_id'];
           this.isLoadingResults = false;

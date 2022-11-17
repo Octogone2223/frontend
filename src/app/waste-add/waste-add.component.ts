@@ -33,7 +33,7 @@ export class WasteAddComponent implements OnInit {
   onFormSubmit(form:NgForm) {
     this.isLoadingResults = true;
 
-    this.api.addWaste(form, " ")
+    this.api.addWaste(form)
       .subscribe(res => {
           //let id = res['_id'];
           this.isLoadingResults = false;

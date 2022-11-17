@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-authentification',
@@ -19,7 +21,12 @@ export class AuthentificationComponent implements OnInit {
   isLoadingResults = false;
   registered = false;
 
-  constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder){}
+  constructor(
+    private router: Router,
+     private api: ApiService,
+      private formBuilder: FormBuilder,
+      private cookieService:CookieService,
+      ){}
 
   ngOnInit(): void {
     this.register = this.formBuilder.group({
@@ -61,7 +68,10 @@ export class AuthentificationComponent implements OnInit {
       this.api.logAccount(user)
       .subscribe(res => {
         console.log(res)
+        console.log(JSON.stringify(res))
+        this.cookieService.set('token',JSON.stringify(res).slice(10, -2));
         this.isLoadingResults = false;
+        this.router.navigateByUrl('/wastes');
       }, err => {
         console.log(err);
         this.isLoadingResults = false;
