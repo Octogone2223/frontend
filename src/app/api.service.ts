@@ -5,7 +5,10 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Waste } from './waste';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'})
+  headers: new HttpHeaders({
+    'Access-Control-Allow-Origin':'*','Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzYzYzEzOTEwNmYyMDFlZDdmNGZkNyIsImlhdCI6MTY2ODY5MzAzMiwiZXhwIjoxNjY4Njk2NjMyfQ.f-L_okt-72NONsQwfvTbGvIhKVkqMBr9PxMgeNn5eZg',
+  })
 };
 const apiUrl = "https://octogone-waste.herokuapp.com/wastes";
 
@@ -27,6 +30,22 @@ export class ApiService {
       return of(result as T);
     };
   }
+
+  // createAccount (): Observable<any[]> {
+  //   return this.http.get<any[]>(apiUrl, { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}} )
+  //     .pipe(
+  //       tap(res => console.log('fetched wastes')),
+  //       catchError(this.handleError('getWastes', []))
+  //     );
+  // }
+
+  // logAccount (): Observable<any[]> {
+  //   return this.http.get<any[]>(apiUrl, { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}} )
+  //     .pipe(
+  //       tap(res => console.log('fetched wastes')),
+  //       catchError(this.handleError('getWastes', []))
+  //     );
+  // }
 
   getWastes (): Observable<any[]> {
     return this.http.get<any[]>(apiUrl, { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}} )
