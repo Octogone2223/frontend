@@ -31,24 +31,24 @@ export class ApiService {
     };
   }
 
-  // createAccount (): Observable<any[]> {
-  //   return this.http.get<any[]>(apiUrl, { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}} )
-  //     .pipe(
-  //       tap(res => console.log('fetched wastes')),
-  //       catchError(this.handleError('getWastes', []))
-  //     );
-  // }
+  createAccount (): Observable<any[]> {
+    return this.http.get<any[]>(apiUrl, httpOptions )
+      .pipe(
+        tap(res => console.log('fetched wastes')),
+        catchError(this.handleError('getWastes', []))
+      );
+  }
 
-  // logAccount (): Observable<any[]> {
-  //   return this.http.get<any[]>(apiUrl, { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}} )
-  //     .pipe(
-  //       tap(res => console.log('fetched wastes')),
-  //       catchError(this.handleError('getWastes', []))
-  //     );
-  // }
+  logAccount (): Observable<any[]> {
+    return this.http.get<any[]>(apiUrl, httpOptions )
+      .pipe(
+        tap(res => console.log('fetched wastes')),
+        catchError(this.handleError('getWastes', []))
+      );
+  }
 
   getWastes (): Observable<any[]> {
-    return this.http.get<any[]>(apiUrl, { "headers" : {'Access-Control-Allow-Origin':'*','Content-Type': 'application/json'}} )
+    return this.http.get<any[]>(apiUrl, httpOptions )
       .pipe(
         tap(res => console.log('fetched wastes')),
         catchError(this.handleError('getWastes', []))
