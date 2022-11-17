@@ -1,1 +1,27 @@
-<p>authentification works!</p>
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <mat-card class="example-card">
+      <form [formGroup]="register" (ngSubmit)="onFormSubmit(register)">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error>
+            <span *ngIf="!register.get('username').valid && register.get('username').touched">Please enter a Username</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" formControlName="password">
+          <mat-error>
+            <span *ngIf="!register.get('password').valid && register.get('password').touched">Please enter Waste Password</span>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="button-row">
+          <button type="submit" [disabled]="!register.valid" mat-flat-button color="primary">Inscription</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>

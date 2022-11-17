@@ -7,6 +7,7 @@ import { WastesComponent } from './wastes/wastes.component';
 import { WasteDetailComponent } from './waste-detail/waste-detail.component';
 import { WasteAddComponent } from './waste-add/waste-add.component';
 import { WasteEditComponent } from './waste-edit/waste-edit.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import {MaterialModule} from './material.module';
     WasteDetailComponent,
     WasteAddComponent,
     WasteEditComponent,
+    AuthentificationComponent,
   ],
   imports: [
     BrowserModule,

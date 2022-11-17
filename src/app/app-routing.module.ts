@@ -5,8 +5,14 @@ import { WastesComponent } from './wastes/wastes.component';
 import { WasteDetailComponent } from './waste-detail/waste-detail.component';
 import { WasteAddComponent } from './waste-add/waste-add.component';
 import { WasteEditComponent } from './waste-edit/waste-edit.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
 
 const routes: Routes = [
+  {
+    path: 'auth',
+    component: AuthentificationComponent,
+    data: { title: 'List of Wastes' }
+  },
   {
     path: 'wastes',
     component: WastesComponent,
