@@ -13,19 +13,21 @@ const apiUrl = "https://octogone-waste.herokuapp.com/";
 })
 
 export class ApiService {
-  token = '';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Access-Control-Allow-Origin':'*','Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token,
-    })
-  };
 
-
+  
 
   constructor(
     private http: HttpClient,
     private cookieService: CookieService) { }
+    
+  token = '';
+  httpOptions = {
+    "headers": {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.cookieService.get('token')
+    }
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -61,9 +63,16 @@ export class ApiService {
   }
 
   getWastes (): Observable<any[]> {
-    this.token = this.cookieService.get('token');
-    console.log('testttt:' + this.token)
-    return this.http.get<any[]>(apiUrl + 'wastes', this.httpOptions )
+    console.log('testttt: ' + this.token)
+    const httpOptions = {
+      "headers": {
+        'Access-Control-Allow-Origin':'*',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.cookieService.get('token'),
+      }
+    };
+
+    return this.http.get<any[]>(apiUrl + 'wastes', httpOptions )
       .pipe(
         tap(res => console.log('fetched wastes')),
         catchError(this.handleError('getWastes', []))

@@ -34,7 +34,7 @@ const routes: Routes = [
     data: { title: 'Edit Waste' }
   },
   { path: '',
-    redirectTo: '/wastes',
+    redirectTo: '/auth',
     pathMatch: 'full'
   }
 ];
