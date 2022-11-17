@@ -12,15 +12,31 @@
   
         <!-- Product Name Column -->
         <ng-container matColumnDef="libel">
-          <th mat-header-cell *matHeaderCellDef>Waste Name</th>
-          <td mat-cell *matCellDef="let row">{{row.libel}}</td>
+          <th mat-header-cell *matHeaderCellDef>Nom article</th>
+          <td mat-cell *matCellDef="let row">{{row.label}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="issuing_company">
+          <th mat-header-cell *matHeaderCellDef>Quantité</th>
+          <td mat-cell *matCellDef="let row">$ {{row.quantity}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="issuing_company">
+          <th mat-header-cell *matHeaderCellDef>Date d'expiration</th>
+          <td mat-cell *matCellDef="let row">$ {{row.expiration_date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="issuing_company">
+          <th mat-header-cell *matHeaderCellDef>Quantité</th>
+          <td mat-cell *matCellDef="let row">$ {{row.quantity}}</td>
         </ng-container>
   
         <!-- Product Price Column -->
         <ng-container matColumnDef="issuing_company">
-          <th mat-header-cell *matHeaderCellDef>Waste Price</th>
+          <th mat-header-cell *matHeaderCellDef>Entreprise</th>
           <td mat-cell *matCellDef="let row">$ {{row.issuing_company}}</td>
         </ng-container>
+        
   
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/waste-details/', row.id]"></tr>
