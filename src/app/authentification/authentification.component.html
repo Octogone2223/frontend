@@ -23,7 +23,7 @@
         <div class="button-row">
           <button type="submit" [disabled]="!register.valid" mat-flat-button color="primary">Inscription</button>
         </div>
-        <p>Vous avez déjà un compte? Par <span (click)="registered = !registered" >ici</span> </p>
+        <p>Vous avez déjà un compte? Par <span (click)="registered = !registered" ><b>ici</b></span> </p>
       </form>
     </mat-card>
     <mat-card class="example-card" *ngIf="!registered">
@@ -46,7 +46,7 @@
           <div class="button-row">
             <button type="submit" [disabled]="!login.valid" mat-flat-button color="primary">Connexion</button>
           </div>
-        <p>Pas de compte, créer le <span (click)="registered = !registered" >ici</span> </p>
+        <p>Pas de compte, créer le <span (click)="registered = !registered" ><b>ici</b></span> </p>
         </form>
       </mat-card>
   </div>

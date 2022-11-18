@@ -13,7 +13,7 @@ export class WastesComponent implements OnInit {
 
   
 
-  displayedColumns: string[] = ['label', 'expiration_date', 'quantity', 'issuing_company'];
+  displayedColumns: string[] = ['label', 'expiration_date', 'quantity', 'issuing_company', 'is_collected'];
   data: Waste[] = [];
   isLoadingResults = true;
   token:any = "";
