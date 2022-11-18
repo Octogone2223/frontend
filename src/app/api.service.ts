@@ -103,7 +103,7 @@ export class ApiService {
 
   updateWaste(id: string, waste: any): Observable<any> {
     this.token = this.cookieService.get('token');
-    const url = `${apiUrl}/${id}`;
+    const url = `${apiUrl}wastes/${id}`;
     return this.http.put(url, waste, this.httpOptions).pipe(
       tap((_) => console.log(`updated waste id=${id}`)),
       catchError(this.handleError<any>('updateWaste'))
@@ -112,7 +112,7 @@ export class ApiService {
 
   deleteWaste(id: string): Observable<Waste> {
     this.token = this.cookieService.get('token');
-    const url = `${apiUrl}/${id}`;
+    const url = `${apiUrl}wastes/${id}`;
 
     return this.http.delete<Waste>(url, this.httpOptions).pipe(
       tap((_) => console.log(`deleted waste id=${id}`)),

@@ -1,51 +1,104 @@
 <div class="example-container mat-elevation-z8">
-    <div class="example-loading-shade"
-         *ngIf="isLoadingResults">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    </div>
-    <div class="button-row">
-      <a mat-flat-button color="primary" (click)="wasteDetails()"><mat-icon>info</mat-icon></a>
-    </div>
-    <mat-card class="example-card">
-      <form [formGroup]="wasteForm" (ngSubmit)="onFormSubmit(wasteForm.value)">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Waste Name" formControlName="label"
-                 >
-          <mat-error>
-            <span *ngIf="!wasteForm.get('label').valid && wasteForm.get('label').touched">Please enter Waste Name</span>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Waste Desc" formControlName="issuing_company"
-                 >
-          <mat-error>
-            <span *ngIf="!wasteForm.get('issuing_company').valid && wasteForm.get('issuing_company').touched">Please enter Waste Description</span>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Waste Price" formControlName="quantity"
-                 >
-          <mat-error>
-            <span *ngIf="!wasteForm.get('quantity').valid && wasteForm.get('quantity').touched">Please enter Waste Price</span>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Waste Price" formControlName="expiration_date"
-                   >
-            <mat-error>
-              <span *ngIf="!wasteForm.get('expiration_date').valid && wasteForm.get('expiration_date').touched">Please enter Waste Price</span>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Waste Price" formControlName="is_collected"
-                   >
-            <mat-error>
-              <span *ngIf="!wasteForm.get('is_collected').valid && wasteForm.get('is_collected').touched">Please enter Waste Price</span>
-            </mat-error>
-          </mat-form-field>
-        <div class="button-row">
-          <button type="submit" [disabled]="!wasteForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
-        </div>
-      </form>
-    </mat-card>
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="wasteDetails()"
+      ><mat-icon>info</mat-icon></a
+    >
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="wasteForm" (ngSubmit)="onFormSubmit(wasteForm.value)">
+      <!-- <mat-form-field class="example-full-width">
+        <input matInput placeholder="Label" formControlName="label" />
+        <mat-error>
+          <span
+            *ngIf="
+              !wasteForm.get('label').valid && wasteForm.get('label').touched
+            "
+            >Please enter Waste label</span
+          >
+        </mat-error>
+      </mat-form-field> -->
+      <!-- <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Issuing company"
+          formControlName="issuing_company"
+        />
+        <mat-error>
+          <span
+            *ngIf="
+              !wasteForm.get('issuing_company').valid &&
+              wasteForm.get('issuing_company').touched
+            "
+            >Please enter the issuing company</span
+          >
+        </mat-error>
+      </mat-form-field> -->
+      <!-- <mat-form-field class="example-full-width">
+        <input
+          type="number"
+          matInput
+          placeholder="Quantity"
+          formControlName="quantity"
+        />
+        <mat-error>
+          <span
+            *ngIf="
+              !wasteForm.get('quantity').valid &&
+              wasteForm.get('quantity').touched
+            "
+            >Please enter the waste's quantity</span
+          >
+        </mat-error>
+      </mat-form-field> -->
+      <!-- <mat-form-field class="example-full-width">
+        <input
+          type="date"
+          matInput
+          placeholder="Expiration date"
+          formControlName="expiration_date"
+        />
+        <mat-error>
+          <span
+            *ngIf="
+              !wasteForm.get('expiration_date').valid &&
+              wasteForm.get('expiration_date').touched
+            "
+            >Please enter the waste's expiration date</span
+          >
+        </mat-error>
+      </mat-form-field> -->
+      <mat-form-field class="example-full-width">
+        <select
+          matNativeControl
+          formControlName="is_collected"
+          placeholder="Is Collected ?"
+        >
+          <option value="{{ true }}">Yes</option>
+          <option value="{{ false }}">No</option>
+        </select>
+        <mat-error>
+          <span
+            *ngIf="
+              !wasteForm.get('is_collected').valid &&
+              wasteForm.get('is_collected').touched
+            "
+            >Please tell if the waste has been collected or not</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button
+          type="submit"
+          [disabled]="!wasteForm.valid"
+          mat-flat-button
+          color="primary"
+        >
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
